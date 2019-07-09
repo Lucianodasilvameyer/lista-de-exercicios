@@ -71,11 +71,11 @@ namespace exercicio_3
     {
         private static void Main(string[] args)
         {
-            float mediaGoldPersonagens=0, maiorValorDeGold, percentualDeJogadoresComGoldAté100, gold=1;
+            float mediaGoldPersonagens=0, maiorValorDeGold=0, percentualDeJogadoresComGoldAté100, gold=1;
             int mediaDoNúmeroDeMontarias;
 
 
-            List<Personagem> listaDePersonagem = new List<Personagem>();
+            List<Personagem> listaDePersonagem = new List<Personagem>();//aqui é colocado no listaDePersonagem as informações de gold e de montaria do construtor personagem? 
 
             // Personagem p = new Personagem(20, 0);//aqui é passado 20 e 0 como parametros
 
