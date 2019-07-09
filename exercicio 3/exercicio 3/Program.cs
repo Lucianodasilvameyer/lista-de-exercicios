@@ -56,7 +56,7 @@ namespace exercicio_3
 
             Personagem p = new Personagem(Convert.ToInt32(Console.ReadLine()), Convert.ToInt32(Console.ReadLine()));
 
-            //p.setGold(Convert.ToInt32(Console.ReadLine()));
+            // p.setGold(Convert.ToInt32(Console.ReadLine()));
             Console.WriteLine("valor de gold do personagem: " + p.getMontaria()); //aqui não deveria ser console.writeLine("informe a media de gold: "+p.getgold ou p.setgold)?
 
 
