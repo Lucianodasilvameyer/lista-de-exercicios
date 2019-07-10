@@ -4,15 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CDDD2234-8763-4928-830D-E3ECC937BF59}</ProjectGuid>
+    <ProjectGuid>{8B62F0A2-09D6-4F4E-BFB0-DE218D83A397}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>exercicio_4_da_revisão</RootNamespace>
-    <AssemblyName>exercicio 4 da revisão</AssemblyName>
+    <RootNamespace>Exercicio5</RootNamespace>
+    <AssemblyName>Exercicio5</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
