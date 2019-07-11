@@ -85,7 +85,7 @@ namespace exercicio_6_da_revisão
                     }
                     if (!calculadoraCientifica) //o ! no inicio significa que não é calculadoraCientifica
                     {
-                        while (opcao != 0 && opcao != 1 && opcao != 2 && opcao != 3 && opcao != 4)
+                        while (opcao != 0 && opcao != 1 && opcao != 2 && opcao != 3 && opcao != 4) //aqui a opção seria no minimo 1 então para é necessario este while? 
                         {
                             Console.WriteLine("opção inválida, digite novamente");
 
@@ -145,7 +145,8 @@ namespace exercicio_6_da_revisão
                             break;
                     }
 
-                } 
+                }
+                Console.ReadKey();
             }
         }
     }
