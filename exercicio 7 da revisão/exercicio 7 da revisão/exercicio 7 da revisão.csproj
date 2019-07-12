@@ -6,4 +6,8 @@
     <RootNamespace>exercicio_7_da_revisão</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Include="E:\programações no unity\treino 11 07 2019\exercicio 7 calculos.cs" Link="exercicio 7 calculos.cs" />
+  </ItemGroup>
+
 </Project>

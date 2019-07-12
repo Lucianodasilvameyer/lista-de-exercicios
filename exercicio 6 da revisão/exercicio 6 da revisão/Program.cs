@@ -79,14 +79,20 @@ namespace exercicio_6_da_revisão
                     else
                     {
                         calculadoraCientifica = false;
-                        Console.WriteLine("0-voltar");
-
-                        opcao = Convert.ToInt32(Console.ReadLine());
                     }
+
+                    Console.WriteLine("0-voltar");
+
+                    opcao = Convert.ToInt32(Console.ReadLine());
+
+
                     if (!calculadoraCientifica) //o ! no inicio significa que não é calculadoraCientifica
                     {
-                        while (opcao != 0 && opcao != 1 && opcao != 2 && opcao != 3 && opcao != 4) //aqui a opção seria no minimo 1 então para é necessario este while? 
+
+                        while (opcao < 0 || opcao > 5) //aqui entraria neste while se fosse menor q zero ou maior q 5, com a primeira condição ja entraria nest while pq não há numero menor q zero e maior q 5 
                         {
+                           // while (opcao != 0 && opcao != 1 && opcao != 2 && opcao != 3 && opcao != 4) //aqui o && é usado para checar cada uma das 5 opções
+                        
                             Console.WriteLine("opção inválida, digite novamente");
 
                             opcao = Convert.ToInt32(Console.ReadLine());

@@ -1,26 +1,45 @@
 ﻿using System;
 
+
+/*
+  7. Crie uma classe abstrata Figura, com um campo double x (privado). Crie um construtor para fornecer o valor para esse campo. 
+  Crie dois métodos abstract CalcularArea() e CalcularPerimetro() que devem retornar os valores da área e do perímetro de uma figura regular, baseados na medida x através de um overload. 
+  Crie as classes derivadas Equilatero, Quadrado, Circulo, Pentagono, Hexagono, Heptagono e Octogono
+ */
 namespace exercicio_7_da_revisão
 {
-    public class Figura
+    public abstract class Figura
     {
-        private double x;
+        protected double lado;
     
-        private void setX(double x)
+        protected void setX(double x)
         {
-            this.x = x;
-        } 
-        private double getX()
-        {
-            return x;
+            this.lado = x;
         }
+        protected double getX()
+        {
+            return lado;
+        }
+
         public Figura(double x)
         {
-            this.x = x;
+            this.lado = x;
         }
-        public double calcularAreaTrianguloEquilatero(double base, double altura)
+
+        public virtual double CalcularArea()
         {
-            return (base * altura) / 2;
+            return lado * 80;
+        }
+
+        public virtual double CalcularPerimetro()
+        {
+
+        }
+
+        //------------------------------------------
+        public double calcularAreaTrianguloEquilatero(double basee, double altura)
+        {
+            return (basee * altura) / 2;
         }
         public double calcularPerimetroTrianguloEquilatero(double lado)
         {
@@ -77,11 +96,38 @@ namespace exercicio_7_da_revisão
     }
 
 
+    class Quadrado : Figura
+    {
+
+        public override double CalcularArea()
+        {
+            lado * lado;
+        }
+    }
+
+    class Equilatero : Figura
+    {
+
+        public override double CalcularArea()
+        {
+           return lado * lado / 2;
+        }
+    }
+
     class Program
     {
         static void Main(string[] args)
         {
-            
+
+            Figura f;
+            Quadrado q;
+
+            f.CalcularArea();
+            q.CalcularArea();
+
+           // Console.WriteLine()
+
+
         }
     }
 }
