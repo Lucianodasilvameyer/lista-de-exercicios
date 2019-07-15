@@ -42,13 +42,13 @@ namespace exercicio7darevisão
 
 
 
-        public void setLado(double x) //não deveria ser private em vez do public?
+        public void setLado(double x) //não deveria ser private em vez do public?só a variavel é private ou protected
         {
-            this.lado = x; //aqui é this.lado = x pq o x tambem é o lado?
+            this.lado = x; //aqui é this.lado = x pq o x tambem é o lado? aqui o x se refere ao parametro
         }
-        public double getLado() //não deveria ser private em vez do public?
+        public double getLado() //não deveria ser private em vez do public?só a variavel é private ou protected
         {
-            return lado; //aqui não deveria retornar x?
+            return lado; 
         }
 
 

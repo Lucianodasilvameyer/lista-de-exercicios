@@ -1,22 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace exercicio_9_da_revisão
 {
     public class Personagem
     {
-        protected string nome;
-        protected int id;
-        protected int hp;
-        protected int forca;
-
-        public void atacante(Personagem atacante)
-        {
-            atacante.nome();
-        }
+        protected string nome = "";
+        protected int id = 0;
+        protected int hp = 0;
+        protected int forca = 0;
 
         public void tomarDanoDaBolaDeFogo()
         {
@@ -32,14 +25,17 @@ namespace exercicio_9_da_revisão
         {
             this.nome = nome;
         }
+
         public string getNome()
         {
             return nome;
         }
+
         public void setId(int id)
         {
             this.id = id;
         }
+
         public int getId()
         {
             return id;
@@ -54,23 +50,27 @@ namespace exercicio_9_da_revisão
         {
             return hp;
         }
+
         public void setForca(int forca)
         {
             this.forca = forca;
         }
+
         public int getForca()
         {
             return forca;
         }
+
         public void MostrarDados()
         {
-            Console.WriteLine(this.GetType() + " força: " + forca + "hp: " + hp);
-
+            Console.WriteLine( "Nome: " + nome + "Classe" + this.GetType().Name + " força: " + forca + "hp: " + hp);
         }
+
         public void atacar(Personagem alvo)
         {
             alvo.tomarDano(forca);//o forca em parenteses representa o parametro int dano?
         }
+
         public class Guerreiro : Personagem
         {
             public void aumentarForca()
@@ -88,6 +88,7 @@ namespace exercicio_9_da_revisão
             {
                 this.mp = mp;
             }
+
             public int getMp()
             {
                 return mp;
@@ -99,6 +100,7 @@ namespace exercicio_9_da_revisão
                 mp -= 5;
             }
         }
+
         public class Inimigo : Personagem
         {
             public void atacarHeroi(Personagem alvo)
@@ -111,24 +113,26 @@ namespace exercicio_9_da_revisão
                 alvo.tomarDano((int)(hp * 0.1));
                 hp += (int)(hp * 0.1);
             }
-
-
         }
-        class Program
+
+        private class Program
         {
-            static void Main(string[] args)
+            private static void Main(string[] args)
             {
                 bool saida = true;
                 int opcao;
-                bool SairDoPrograma = true;
+                string classe = "";
+
                 //int forca;
                 //int hp;
 
-                Guerreiro guerreiro = new Guerreiro(); //o Guerreiro com G maiusculo é da classe Guerreiro? e esta passando as informações da classe Guerreiro para a instancia guerreiro? 
+                Guerreiro guerreiro = new Guerreiro(); //o Guerreiro com G maiusculo é da classe Guerreiro? e esta passando as informações da classe Guerreiro para a instancia guerreiro?
                 Inimigo inimigo = new Inimigo();
                 Mago mago = new Mago();
 
-               
+                Personagem atacante = new Personagem(), alvo = new Personagem();
+                List<Personagem> listaDePersonagens = new List<Personagem>();
+
                 while (saida != false)
                 {
                     Personagem p = new Personagem();
@@ -136,13 +140,7 @@ namespace exercicio_9_da_revisão
                     Console.WriteLine("escolha uma das opções abaxo:");
 
                     Console.WriteLine("1-cadastrar personagem");
-                    opcao = Convert.ToInt32(Console.ReadLine());
-                    if (opcao == 1)
-                    {
-                        Console.WriteLine("1a-guerreiro");
-                        Console.WriteLine("1b-mago");
-                        Console.WriteLine("1c-inimigo");
-                    }
+
                     Console.WriteLine("2-Escolher Atacante por Nome");
                     Console.WriteLine("3-Escolher Atacante por ID");
                     Console.WriteLine("4-Escolher Alvo por Nome");
@@ -155,9 +153,7 @@ namespace exercicio_9_da_revisão
                     Console.WriteLine("11-Resetar os valores de todos os personagens Inimigos para o seu valor inicial");
                     Console.WriteLine("12-Mostrar os dados de todos os Personagens Cadastrados");
                     Console.WriteLine("13-Sair do Programa");
-
-                    
-
+                    opcao = Convert.ToInt32(Console.ReadLine());
 
                     while (opcao < 1 || opcao > 13)
                     {
@@ -165,11 +161,10 @@ namespace exercicio_9_da_revisão
                         opcao = Convert.ToInt32(Console.ReadLine());
                     }
 
-
                     int hp = 0;
                     int forca = 0;
                     int mp = 0;
-                    string nome;
+                    string nome ="";
                     int id = 0;
 
                     if (opcao == 13)
@@ -177,57 +172,119 @@ namespace exercicio_9_da_revisão
                         saida = false;
                         break;
                     }
-                    if (opcao == 1a ||opcao==1b||opcao==1c)
+
+                    if (opcao == 1)
                     {
-                        Console.WriteLine("informe o nome do personagem: ");
-                        nome = Console.ReadLine();
+                        Console.WriteLine("a-guerreiro");
+                        Console.WriteLine("b-mago");
+                        Console.WriteLine("c-inimigo");
+                        classe = Console.ReadLine();
+                        if (classe == "a" || classe == "b" || classe == "c")
+                        {
+                            Console.WriteLine("informe o nome do personagem: ");
+                            nome = Console.ReadLine();
 
-                        Console.WriteLine("informe o hp: ");
-                        hp = Convert.ToInt32(Console.ReadLine());
+                            Console.WriteLine("informe o hp: ");
+                            hp = Convert.ToInt32(Console.ReadLine());
 
-                        Console.WriteLine("informe a força: ");
-                        forca = Convert.ToInt32(Console.ReadLine());
+                            Console.WriteLine("informe a força: ");
+                            forca = Convert.ToInt32(Console.ReadLine());
 
-                        Console.WriteLine("informe o id: ");
-                        id = Convert.ToInt32(Console.ReadLine());
+                            Console.WriteLine("informe o id: ");
+                            id = Convert.ToInt32(Console.ReadLine());
+                        }
+
+                        if (classe == "a")
+                        {
+                            guerreiro.setForca(forca); //aqui é onde se passa os atributos para a instancia q tem todas as informações da classe?
+                            guerreiro.setHp(hp);
+                            guerreiro.setNome(nome);
+                            guerreiro.setId(id);
+
+                            listaDePersonagens.Add(guerreiro);
+                        }
+                        if (classe == "c")
+                        {
+                            inimigo.setForca(forca);
+                            inimigo.setHp(hp);
+                            inimigo.setNome(nome);
+                            inimigo.setId(id);
 
 
+                            listaDePersonagens.Add(inimigo);
+                        }
+                        if (classe == "b")
+                        {
+                            Console.WriteLine("informe o mp: ");
+                            mp = Convert.ToInt32(Console.ReadLine());
+
+                            
+
+                            mago.setForca(forca);
+                            mago.setHp(hp);
+                            mago.setMp(mp);
+                            mago.setNome(nome);
+                            mago.setId(id);
+
+
+                            listaDePersonagens.Add(mago);
+                        }
                     }
-
-                    if (opcao == 1a)
+                    if (opcao == 2)
                     {
-                        guerreiro.setForca(forca); //aqui é onde se passa os atributos para a instancia q tem todas as informações da classe?
-                        guerreiro.setHp(hp);
-                    }
-                    if (opcao == 1c)
-                    {
-                        inimigo.setForca(forca);
-                        inimigo.setHp(hp);
+                        string nome1;
+                        Console.WriteLine("informe o nome do atacante: ");
+                        nome1 = Console.ReadLine();
                         
+                        if (listaDePersonagens.Any(x=> x.getNome() == nome1))
+                        {
+                            atacante = listaDePersonagens.Find(x => x.getNome() == nome1);
+                        }
+                        else
+                        {
+                            Console.WriteLine(nome1 + " não encontrado!");
+                        }
+
+
                     }
-                    if(opcao == 1b)
+
+                    if (opcao == 4)
                     {
-                        Console.WriteLine("informe o mp: ");
-                        mp = Convert.ToInt32(Console.ReadLine());
+                        string nome1;
+                        Console.WriteLine("informe o nome do alvo: ");
+                        nome1 = Console.ReadLine();
 
-                        mago.setForca(forca);
-                        mago.setHp(hp);
-                        mago.setMp(mp);
-                        
+                        if (listaDePersonagens.Any(x => x.getNome() == nome1))
+                        {
+                            alvo = listaDePersonagens.Find(x => x.getNome() == nome1);
+                        }
+                        else
+                        {
+                            Console.WriteLine(nome1 + " não encontrado!");
+                        }
+
+
+
                     }
-                    
 
-                   
-                    Console.ReadKey();
 
+                    if (opcao == 6)
+                    {
+                        atacante.MostrarDados();
+                        alvo.MostrarDados();
+
+
+
+                    }
 
 
                 }
+
+
+                Console.ReadKey();
             }
+            
+
         }
     }
-
 }
-        
-    
-
