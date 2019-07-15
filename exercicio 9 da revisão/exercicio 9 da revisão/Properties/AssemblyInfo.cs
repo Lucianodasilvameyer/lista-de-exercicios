@@ -4,12 +4,12 @@ using System.Runtime.InteropServices;
 
 // As informações gerais sobre um assembly são controladas por
 // conjunto de atributos. Altere estes valores de atributo para modificar as informações
-// associada a um assembly.
-[assembly: AssemblyTitle("exercicio4")]
+// associadas a um assembly.
+[assembly: AssemblyTitle("exercicio 9 da revisão")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("exercicio4")]
+[assembly: AssemblyProduct("exercicio 9 da revisão")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // O GUID a seguir será destinado à ID de typelib se este projeto for exposto para COM
-[assembly: Guid("ceab48e6-2d69-42cd-97be-c4d01bb85058")]
+[assembly: Guid("233d6f4f-bcad-40f3-b9bd-81591e88525d")]
 
 // As informações da versão de um assembly consistem nos quatro valores a seguir:
 //
@@ -30,7 +30,7 @@ using System.Runtime.InteropServices;
 //      Revisão
 //
 // É possível especificar todos os valores ou usar como padrão os Números de Build e da Revisão
-// utilizando o "*" como mostrado abaixo:
+// usando o "*" como mostrado abaixo:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]

@@ -89,6 +89,8 @@ namespace exercicio_8_da_revisão
             bool saida = true;
             int opcao;
             bool SairDoPrograma = true;
+            //int forca;
+            //int hp;
 
             Guerreiro guerreiro = new Guerreiro();
             Inimigo inimigo = new Inimigo();
@@ -97,7 +99,7 @@ namespace exercicio_8_da_revisão
             {
                 Personagem p = new Personagem();
 
-                Console.WriteLine("escolha uma das opções abaxo:");
+                Console.WriteLine("escolha uma das opções abaixo:");
                 Console.WriteLine("1-criar guerreiro");
                 Console.WriteLine("2-criar inimigo");
                 Console.WriteLine("3-sair");
@@ -128,7 +130,7 @@ namespace exercicio_8_da_revisão
 
                     Console.WriteLine("informe a força: ");
                     forca = Convert.ToInt32(Console.ReadLine());
-
+                    
 
                 }
 
@@ -137,11 +139,11 @@ namespace exercicio_8_da_revisão
                     guerreiro.setForca(forca);
                     guerreiro.setHp(hp);
                 }
-                    else
-                    {
-                      inimigo.setForca(forca);
-                      inimigo.setHp(hp);
-                    }
+                else
+                {
+                    inimigo.setForca(forca);
+                    inimigo.setHp(hp);
+                }
 
                 guerreiro.MostrarDados();
                 inimigo.MostrarDados();
@@ -158,16 +160,61 @@ namespace exercicio_8_da_revisão
                     Console.WriteLine("7 - Resetar os valores do Inimigo para os seus Iniciais");
                     Console.WriteLine("0 - Sair do Programa");
                     opcao = Convert.ToInt32(Console.ReadLine());
-                          
-                                          if(opcao==0)
-                                          {
-                                        
-                                          } 
 
+
+
+
+
+                            if (opcao==0)
+                            {
+                              SairDoPrograma=false;
+                              break;
+                            }
+                            if(opcao==1)
+                            {
+                              guerreiro.atacar(inimigo);
+                              break; 
+
+                            }
+                            if(opcao==2)
+                            {
+                              inimigo.atacar(guerreiro);
+                              break;
+
+                            }
+                            if (opcao == 3)
+                            {
+                                 guerreiro.aumentarForca();
+                                 break;
+                            }
+                            if(opcao==4)
+                            {
+                                 inimigo.roubarVida(guerreiro);
+                            }
+                            if(opcao==5)
+                            {
+                                 guerreiro.MostrarDados();
+                                 inimigo.MostrarDados();
+                            }
+                            if(opcao==6)
+                            {
+                                 forca = 0;
+                                 hp = 0;
+                            }
+                            if(opcao==7)
+                            {
+                                forca = 0;
+                                hp = 0; 
+                            }
+                            while (opcao < 0 || opcao > 7)
+                            {
+                              Console.WriteLine("numero inexistente, digite novamente");
+                              opcao = Convert.ToInt32(Console.ReadLine());
+                            }
 
 
                 }
-
+                Console.ReadKey();
 
 
 
