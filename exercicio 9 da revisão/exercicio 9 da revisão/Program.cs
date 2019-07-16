@@ -63,9 +63,10 @@ namespace exercicio_9_da_revisão
 
         public void MostrarDados()
         {
-            Console.WriteLine( "Nome: " + nome + "Classe" + this.GetType().Name + " força: " + forca + "hp: " + hp);
+            Console.WriteLine( "Nome: " + nome + "Classe" + this.GetType().Name + " força: " + forca + "hp: " + hp);//"Classe" + this.GetType().Name é para aparecer apenas o nome do personagem?
         }
-
+        
+        
         public void atacar(Personagem alvo)
         {
             alvo.tomarDano(forca);//o forca em parenteses representa o parametro int dano?
@@ -92,6 +93,10 @@ namespace exercicio_9_da_revisão
             public int getMp()
             {
                 return mp;
+            }
+            public void MostrarDadosDoMago()
+            {
+                Console.WriteLine("nome: " + nome + "classe" + this.GetType().Name + "força: " + forca + "hp: " + hp + "mp: " + mp);
             }
 
             public void bolaDefogo(Personagem alvo)
@@ -126,18 +131,18 @@ namespace exercicio_9_da_revisão
                 //int forca;
                 //int hp;
 
-                Guerreiro guerreiro = new Guerreiro(); //o Guerreiro com G maiusculo é da classe Guerreiro? e esta passando as informações da classe Guerreiro para a instancia guerreiro?
+                Guerreiro guerreiro = new Guerreiro(); //aqui é como carregar uma arma descarregada?
                 Inimigo inimigo = new Inimigo();
                 Mago mago = new Mago();
 
                 Personagem atacante = new Personagem(), alvo = new Personagem();
-                List<Personagem> listaDePersonagens = new List<Personagem>();
+                List<Personagem> listaDePersonagens = new List<Personagem>(); //no caso da lista a arma  é criada ja carregada?
 
                 while (saida != false)
                 {
                     Personagem p = new Personagem();
 
-                    Console.WriteLine("escolha uma das opções abaxo:");
+                    Console.WriteLine("escolha uma das opções abaixo:");
 
                     Console.WriteLine("1-cadastrar personagem");
 
@@ -190,8 +195,7 @@ namespace exercicio_9_da_revisão
                             Console.WriteLine("informe a força: ");
                             forca = Convert.ToInt32(Console.ReadLine());
 
-                            Console.WriteLine("informe o id: ");
-                            id = Convert.ToInt32(Console.ReadLine());
+                            
                         }
 
                         if (classe == "a")
@@ -199,19 +203,20 @@ namespace exercicio_9_da_revisão
                             guerreiro.setForca(forca); //aqui é onde se passa os atributos para a instancia q tem todas as informações da classe?
                             guerreiro.setHp(hp);
                             guerreiro.setNome(nome);
-                            guerreiro.setId(id);
+                            
 
                             listaDePersonagens.Add(guerreiro);
+                            id++;
                         }
                         if (classe == "c")
                         {
                             inimigo.setForca(forca);
                             inimigo.setHp(hp);
                             inimigo.setNome(nome);
-                            inimigo.setId(id);
-
+                            
 
                             listaDePersonagens.Add(inimigo);
+                            id++;
                         }
                         if (classe == "b")
                         {
@@ -224,10 +229,11 @@ namespace exercicio_9_da_revisão
                             mago.setHp(hp);
                             mago.setMp(mp);
                             mago.setNome(nome);
-                            mago.setId(id);
+                           
 
 
                             listaDePersonagens.Add(mago);
+                            id++;
                         }
                     }
                     if (opcao == 2)
@@ -236,15 +242,32 @@ namespace exercicio_9_da_revisão
                         Console.WriteLine("informe o nome do atacante: ");
                         nome1 = Console.ReadLine();
                         
-                        if (listaDePersonagens.Any(x=> x.getNome() == nome1))
+                        if (listaDePersonagens.Any(x=> x.getNome() == nome1)) //aqui o any verifica se tem qualquer elemento na listaDePersonagens com o nome nome1? 
                         {
-                            atacante = listaDePersonagens.Find(x => x.getNome() == nome1);
-                        }
+                            atacante = listaDePersonagens.Find(x => x.getNome() == nome1);//aqui o find serve para procurar na listaDePersonagens apenas pelo nome nome1?
+                        }                 //para q serve o atacante = ,nesta parte?    
                         else
                         {
                             Console.WriteLine(nome1 + " não encontrado!");
                         }
 
+
+                    }
+                    if(opcao==3)
+                    {
+                        int id1 = 0;
+
+                        Console.WriteLine("informe o id do atacante");
+                        id1 = Convert.ToInt32(Console.ReadLine());
+
+                        if (listaDePersonagens.Any(x=> x. getId() == id1 ))
+                        {
+                            atacante = listaDePersonagens.Find(x=>x.getId()==id1);
+                        } 
+                        else
+                        {
+                            Console.WriteLine(id1 + "não encontrado!");
+                        }
 
                     }
 
@@ -266,6 +289,23 @@ namespace exercicio_9_da_revisão
 
 
                     }
+                    if(opcao==5)
+                    {
+                        int id2 = 0;
+
+                        Console.WriteLine("informe o id do alvo: ");
+                        id2 = Convert.ToInt32(Console.ReadLine());
+
+                        if(listaDePersonagens.Any(x => x.getId()==id2))
+                        {
+                            alvo = listaDePersonagens.Find(x => x.getId() == id2);
+                        }
+                        else
+                        {
+                            Console.WriteLine(id2 + "não econtrado!");
+                        } 
+
+                    }
 
 
                     if (opcao == 6)
@@ -274,10 +314,77 @@ namespace exercicio_9_da_revisão
                         alvo.MostrarDados();
 
 
-
+                        atacante.MostrarDadosDoMago();//?
+                        alvo.MostrarDadosDoMago();
                     }
+                    if(opcao==7)
+                    {
+                        int numero = 0;
 
+                        Console.WriteLine("escolha qual personagem quer que ataque: ");
+                        Console.WriteLine("1-guerreiro");
+                        Console.WriteLine("2-mago");
+                        Console.WriteLine("3-inimigo");
+                        numero = Convert.ToInt32(Console.ReadLine());
 
+                        if(numero==1)
+                        {
+                            char letra;
+
+                            Console.WriteLine("escolha uma das seguintes ações: ");
+                            Console.WriteLine("A-atacar");
+                            Console.WriteLine("B-usar aumentar força");
+                            letra = Convert.ToChar(Console.ReadLine());
+                        }
+                        if(numero==2)
+                        {
+                            char letra2;
+
+                            Console.WriteLine("escolha uma das seguintes ações: ");
+                            Console.WriteLine("A-atacar");
+                            Console.WriteLine("B-usar bola de fogo");
+                            letra2 = Convert.ToChar(Console.ReadLine());
+                        }
+                        if(numero==3)
+                        {
+                            char letra3;
+
+                            Console.WriteLine("escolha uma das seguintes ações: ");
+                            Console.WriteLine("A-atacar");
+                            Console.WriteLine("B-usar roubar vida");
+                            letra3 = Convert.ToChar(Console.ReadLine());
+                        }
+
+                    }   
+                    if(opcao==8)
+                    {
+
+                        String nome3;
+                        Console.WriteLine("informe o nome do personagem atacante: ");
+                        nome3 = Console.ReadLine();
+
+                        if(listaDePersonagens.Any(x=>x.getNome()==nome3))
+                        {
+                             
+                            atacante = listaDePersonagens.Find(x => x.getNome() == nome3);
+
+                             if(atacante)
+                             {
+                                hp = 0;
+                                forca = 0;
+                                nome3 = "";
+
+                             }  
+                        } 
+                        else
+                        {
+                            Console.WriteLine(nome3 + "não encontrado");
+                        }
+                    } 
+                    if(opcao==9)
+                    {
+                        f
+                    }
                 }
 
 
@@ -285,6 +392,9 @@ namespace exercicio_9_da_revisão
             }
             
 
-        }
+        }      
     }
 }
+
+
+
