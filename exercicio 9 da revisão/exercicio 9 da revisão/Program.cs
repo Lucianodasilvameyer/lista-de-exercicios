@@ -11,6 +11,26 @@ namespace exercicio_9_da_revisão
         protected int hp = 0;
         protected int forca = 0;
 
+        protected int _hpInicial = 0;  // Backing store
+        public int HpInicial
+        {
+            get //não muda valor da variavel ao ser usado
+            {
+                return _hpInicial;
+            }
+            set// muda o valor da variavel ao ser usado
+            {
+                if (value >= 9000)
+                    _hpInicial = 9000;
+                else
+                    _hpInicial = value;
+            }
+        }
+
+
+        //protected int _forcaInicial = 7;  // Backing store
+        public int ForcaInicial { get; set; }
+
         public void tomarDanoDaBolaDeFogo()
         {
             hp -= 20;
@@ -23,6 +43,7 @@ namespace exercicio_9_da_revisão
 
         public void setNome(string nome)
         {
+            
             this.nome = nome;
         }
 
@@ -61,12 +82,18 @@ namespace exercicio_9_da_revisão
             return forca;
         }
 
-        public void MostrarDados()
+        public virtual void MostrarDados()
         {
             Console.WriteLine( "Nome: " + nome + "Classe" + this.GetType().Name + " força: " + forca + "hp: " + hp);//"Classe" + this.GetType().Name é para aparecer apenas o nome do personagem?
         }
-        
-        
+
+        public virtual void ResetarAtributos()// na mãe
+        {
+            hp = HpInicial;
+            forca = ForcaInicial;
+        }
+
+
         public void atacar(Personagem alvo)
         {
             alvo.tomarDano(forca);//o forca em parenteses representa o parametro int dano?
@@ -85,6 +112,8 @@ namespace exercicio_9_da_revisão
         {
             private int mp;
 
+            public int MpInicial { get; set; }
+
             public void setMp(int mp)
             {
                 this.mp = mp;
@@ -94,9 +123,15 @@ namespace exercicio_9_da_revisão
             {
                 return mp;
             }
-            public void MostrarDadosDoMago()
+            public override void MostrarDados()
             {
                 Console.WriteLine("nome: " + nome + "classe" + this.GetType().Name + "força: " + forca + "hp: " + hp + "mp: " + mp);
+            }
+
+            public override void ResetarAtributos()
+            {
+                base.ResetarAtributos();
+                mp = MpInicial;
             }
 
             public void bolaDefogo(Personagem alvo)
@@ -135,7 +170,15 @@ namespace exercicio_9_da_revisão
                 Inimigo inimigo = new Inimigo();
                 Mago mago = new Mago();
 
-                Personagem atacante = new Personagem(), alvo = new Personagem();
+
+
+                Personagem atacante = new Personagem();
+                Personagem alvo = new Personagem();
+
+
+                
+
+
                 List<Personagem> listaDePersonagens = new List<Personagem>(); //no caso da lista a arma  é criada ja carregada?
 
                 while (saida != false)
@@ -169,6 +212,8 @@ namespace exercicio_9_da_revisão
                     int hp = 0;
                     int forca = 0;
                     int mp = 0;
+                    int forcaInicial = 0;
+                    int HpInicial = 0;
                     string nome ="";
                     int id = 0;
 
@@ -191,10 +236,11 @@ namespace exercicio_9_da_revisão
 
                             Console.WriteLine("informe o hp: ");
                             hp = Convert.ToInt32(Console.ReadLine());
+                            HpInicial = hp;
 
                             Console.WriteLine("informe a força: ");
                             forca = Convert.ToInt32(Console.ReadLine());
-
+                            forcaInicial = forca;
                             
                         }
 
@@ -203,6 +249,8 @@ namespace exercicio_9_da_revisão
                             guerreiro.setForca(forca); //aqui é onde se passa os atributos para a instancia q tem todas as informações da classe?
                             guerreiro.setHp(hp);
                             guerreiro.setNome(nome);
+                            guerreiro.HpInicial = HpInicial;//aqui esta salvando o HpInicial dea classe no guerreiro.HpInicial
+                            guerreiro.ForcaInicial = forcaInicial;
                             
 
                             listaDePersonagens.Add(guerreiro);
@@ -213,7 +261,9 @@ namespace exercicio_9_da_revisão
                             inimigo.setForca(forca);
                             inimigo.setHp(hp);
                             inimigo.setNome(nome);
-                            
+                            inimigo.HpInicial = HpInicial;// aqui salva
+                            inimigo.ForcaInicial = forcaInicial;
+
 
                             listaDePersonagens.Add(inimigo);
                             id++;
@@ -226,10 +276,10 @@ namespace exercicio_9_da_revisão
                             
 
                             mago.setForca(forca);
-                            mago.setHp(hp);
+                            mago.setHp();
                             mago.setMp(mp);
                             mago.setNome(nome);
-                           
+                            mago.MpInicial = mp;
 
 
                             listaDePersonagens.Add(mago);
@@ -314,8 +364,7 @@ namespace exercicio_9_da_revisão
                         alvo.MostrarDados();
 
 
-                        atacante.MostrarDadosDoMago();//?
-                        alvo.MostrarDadosDoMago();
+                        
                     }
                     if(opcao==7)
                     {
@@ -368,13 +417,12 @@ namespace exercicio_9_da_revisão
                              
                             atacante = listaDePersonagens.Find(x => x.getNome() == nome3);
 
-                             if(atacante)
-                             {
-                                hp = 0;
-                                forca = 0;
-                                nome3 = "";
 
-                             }  
+                            atacante.ResetarAtributos();
+                             
+                                
+
+                               
                         } 
                         else
                         {
@@ -383,7 +431,26 @@ namespace exercicio_9_da_revisão
                     } 
                     if(opcao==9)
                     {
-                        f
+                        String nome4;
+                        Console.WriteLine("informe o nome do personagem alvo: ");
+                        nome4 = Console.ReadLine();
+
+                        if (listaDePersonagens.Any(x => x.getNome() == nome4))
+                        {
+
+                            alvo = listaDePersonagens.Find(x => x.getNome() == nome4);
+
+
+                            alvo.ResetarAtributos();
+
+
+
+
+                        }
+                        else
+                        {
+                            Console.WriteLine(nome3 + "não encontrado");
+                        }
                     }
                 }
 
