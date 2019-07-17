@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace treino_no_exercicio_9_da_revisão
 {
@@ -10,80 +8,78 @@ namespace treino_no_exercicio_9_da_revisão
     {
         //protected string nome="";
         protected int hp = 0;
+
         protected int forca = 0;
         protected int id = 0;
         //protected int mpInicial = 0;
 
-
         public string nome { get; set; }
         public int mpInicial { get; set; }
         public int ForcaInicial { get; set; }
-        public int HpInicial { set; get; }//se usar dessa forma não é necessaio nem declarar a variavel antes? 
-
-
-
-
+        public int HpInicial { set; get; }//se usar dessa forma não é necessario  declarar a variavel antes? sim
 
         //public string nome { set; get; }??
 
         //public int hp { get; set; }??
-
 
         //public string forca()
         //{
         //  get
         //{
         //  return forca;
-        //}   
+        //}
         // set
         //{
         //if(forca>=10)
         //{
-
         //  }
-
 
         //    else
 
-
-
-        //  }     
+        //  }
 
         //}
-
 
         public void setNome(string nome)
         {
             this.nome = nome;
         }
+
         public string getNome()
         {
             return nome;
         }
+
         public void setHp(int hp)
         {
             this.hp = hp;
         }
+
         public int getHp()
         {
             return hp;
         }
+
         public void setForca(int forca)
         {
             this.forca = forca;
         }
+
         public int getForca()
         {
             return forca;
         }
+
         public void setId(int id)
         {
             this.id = id;
         }
+
         public int getId()
         {
             return id;
         }
+
         public virtual void resetarValores()
         {
             hp = HpInicial;
@@ -94,6 +90,7 @@ namespace treino_no_exercicio_9_da_revisão
         {
             hp -= 20;
         }
+
         public void TomarDano(int dano)
         {
             hp -= dano;
@@ -103,12 +100,13 @@ namespace treino_no_exercicio_9_da_revisão
         {
             Console.WriteLine("nome: " + nome + "classe" + this.GetType().Name + "força: " + forca + "hp: " + hp);
         }
+
         public void atacar(Personagem alvo)
         {
             alvo.TomarDano(forca);
         }
-
     }
+
     public class Guerreiro : Personagem
     {
         public void aumentarForca()
@@ -116,8 +114,8 @@ namespace treino_no_exercicio_9_da_revisão
             hp -= 5;
             forca += 5;
         }
-
     }
+
     public class Mago : Personagem
     {
         private int mp;
@@ -126,13 +124,14 @@ namespace treino_no_exercicio_9_da_revisão
 
         public override void MostrarDados()
         {
-            Console.WriteLine("nome: " + nome + "classe" + this.GetType().Name + "força: " + forca + "hp: " + hp + "mp: " + mp);
+            Console.WriteLine("nome: " + nome + " classe" + this.GetType().Name + " | força: " + forca + "hp: " + hp + "mp: " + mp);
         }
 
         public void setMp(int mp)
         {
             this.mp = mp;
         }
+
         public int getMp()
         {
             return mp;
@@ -143,51 +142,43 @@ namespace treino_no_exercicio_9_da_revisão
             alvo.tomarDanoDeBolaDeFogo();
             mp -= 5;
         }
+
         public override void resetarValores()
         {
             base.resetarValores();
             mp = mpInicial;
         }
-
     }
+
     public class Inimigo : Personagem
     {
-
         public void atacarheroi(Personagem alvo)
         {
             alvo.TomarDano((int)(hp * 0.3));
         }
+
         public void roubarVida(Personagem alvo)
         {
             alvo.TomarDano((int)(hp * 0.1));
             hp += (int)(hp * 0.1);
-
         }
-
     }
 
-
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             bool sair = false;
             int opcao = 0;
             string classe = "";
 
-            Guerreiro guerreiro = new Guerreiro();
-            Mago mago = new Mago();
-            Inimigo inimigo = new Inimigo();
             Personagem atacante = new Personagem();
             Personagem alvo = new Personagem();
             Personagem PersonagemN = new Personagem();
             Personagem inimigos = new Personagem();
             Personagem PersonagensCadastrados = new Personagem();
 
-
             List<Personagem> ListaDePersonagens = new List<Personagem>();
-
-
 
             while (sair != true)
             {
@@ -207,20 +198,17 @@ namespace treino_no_exercicio_9_da_revisão
                 Console.WriteLine("13 - Sair do Programa");
                 opcao = Convert.ToInt32(Console.ReadLine());
 
-
                 if (opcao < 1 || opcao > 13)
                 {
                     Console.WriteLine("opção não encontrada, digite novamente");
                     opcao = Convert.ToInt32(Console.ReadLine());
                 }
 
-
-
                 string nome = "";
                 int hp = 0;
                 int forca = 0;
                 int HpInicial = 0;
-                int ForcaInicial = 0; //é preciso declarar hp inicial,força inicial e mp inicial aqui e no começo do exercicio? 
+                int ForcaInicial = 0; //é preciso declarar hp inicial,força inicial e mp inicial aqui e no começo do exercicio?
                 int mp = 0;
                 int mpInicial = 0;
                 int id = 0;
@@ -246,10 +234,9 @@ namespace treino_no_exercicio_9_da_revisão
                         forca = Convert.ToInt32(Console.ReadLine());
                         ForcaInicial = forca;
 
-
-
                         if (classe == "a")
                         {
+                            Guerreiro guerreiro = new Guerreiro();
                             guerreiro.setNome(nome);
                             guerreiro.setHp(hp);
                             guerreiro.setForca(forca);
@@ -266,6 +253,7 @@ namespace treino_no_exercicio_9_da_revisão
                             mp = Convert.ToInt32(Console.ReadLine());
                             mpInicial = mp;
 
+                            Mago mago = new Mago();
                             mago.setNome(nome);
                             mago.setHp(hp);
                             mago.setForca(forca);
@@ -276,10 +264,10 @@ namespace treino_no_exercicio_9_da_revisão
                             ListaDePersonagens.Add(mago);
 
                             id++;
-
                         }
                         if (classe == "c")
                         {
+                            Inimigo inimigo = new Inimigo();
                             inimigo.setNome(nome);
                             inimigo.setHp(hp);
                             inimigo.setForca(forca);
@@ -289,14 +277,8 @@ namespace treino_no_exercicio_9_da_revisão
                             ListaDePersonagens.Add(inimigo);
 
                             id++;
-
                         }
-
-
-
                     }
-
-
                 }
                 if (opcao == 2)
                 {
@@ -307,14 +289,11 @@ namespace treino_no_exercicio_9_da_revisão
                     if (ListaDePersonagens.Any(x => x.getNome() == nome1))
                     {
                         atacante = ListaDePersonagens.Find(x => x.getNome() == nome1);
-
-
                     }
                     else
                     {
                         Console.WriteLine(nome1 + "não encontrado");
                     }
-
                 }
                 if (opcao == 3)
                 {
@@ -340,7 +319,6 @@ namespace treino_no_exercicio_9_da_revisão
                     if (ListaDePersonagens.Any(x => x.getNome() == nome2))
                     {
                         alvo = ListaDePersonagens.Find(x => x.getNome() == nome2);
-
                     }
                     else
                     {
@@ -356,7 +334,6 @@ namespace treino_no_exercicio_9_da_revisão
                     if (ListaDePersonagens.Any(x => x.getId() == id))
                     {
                         alvo = ListaDePersonagens.Find(x => x.getId() == id);
-
                     }
                     else
                     {
@@ -370,15 +347,11 @@ namespace treino_no_exercicio_9_da_revisão
                 }
                 if (opcao == 7)
                 {
-                    int numero = 0;
+                    
 
-                    Console.WriteLine("escolha qual personagem quer que ataque: ");
-                    Console.WriteLine("1-guerreiro");
-                    Console.WriteLine("2-mago");
-                    Console.WriteLine("3-inimigo");
-                    numero = Convert.ToInt32(Console.ReadLine());
+                  
 
-                    if (numero == 1)
+                    if (atacante.GetType() == typeof(Guerreiro))
                     {
                         char letra;
 
@@ -386,8 +359,20 @@ namespace treino_no_exercicio_9_da_revisão
                         Console.WriteLine("A-atacar");
                         Console.WriteLine("B-usar aumentar força");
                         letra = Convert.ToChar(Console.ReadLine());
+
+                        if(letra == 'A' || letra == 'a')
+                        {
+                            atacante.atacar(alvo);
+                        }
+                        else if(letra == 'B' || letra == 'b')
+                        {
+
+                            Guerreiro g = (Guerreiro)atacante;
+                            g.aumentarForca();
+
+                        }
                     }
-                    if (numero == 2)
+                    if (atacante.GetType() == typeof(Mago))
                     {
                         char letra2;
 
@@ -395,8 +380,20 @@ namespace treino_no_exercicio_9_da_revisão
                         Console.WriteLine("A-atacar");
                         Console.WriteLine("B-usar bola de fogo");
                         letra2 = Convert.ToChar(Console.ReadLine());
+
+                        if (letra2 == 'A' || letra2 == 'a')
+                        {
+                            atacante.atacar(alvo);
+                        }
+                        else if (letra2 == 'B' || letra2 == 'b')
+                        {
+
+                            Mago g = (Mago)atacante;//aqui passa a variavel atacante do tipo personagem para o tipo mago? 
+                            g.BolaDeFogo(alvo);
+
+                        }
                     }
-                    if (numero == 3)
+                    if (atacante.GetType() == typeof(Inimigo))
                     {
                         char letra3;
 
@@ -404,98 +401,80 @@ namespace treino_no_exercicio_9_da_revisão
                         Console.WriteLine("A-atacar");
                         Console.WriteLine("B-usar roubar vida");
                         letra3 = Convert.ToChar(Console.ReadLine());
+
+                        if (letra3 == 'A' || letra3 == 'a')
+                        {
+                            atacante.atacar(alvo);
+                        }
+                        else if (letra3 == 'B' || letra3 == 'b')
+                        {
+
+                            Inimigo g = (Inimigo)atacante;
+                            g.roubarVida(alvo);
+
+                        }
                     }
 
+                    Console.WriteLine("-----------------------");
+                    alvo.MostrarDados();
+                    atacante.MostrarDados();
+                    Console.WriteLine("-----------------------");
                 }
                 if (opcao == 8)
                 {
-                    string nome4;
-
-                    Console.WriteLine("informe o nome do atacante: ");
-                    nome4 = Console.ReadLine();
-
-                    if (ListaDePersonagens.Any(x => x.getNome() == nome4))
-                    {
-                        atacante = ListaDePersonagens.Find(x => x.getNome() == nome4);
-
-                        atacante.resetarValores();
-                    }
-                    else
-                    {
-                        Console.WriteLine(nome4 + "não encontrado");
-                    }
+                    atacante.resetarValores();
                 }
                 if (opcao == 9)
                 {
-                    string nome5;
-
-                    Console.WriteLine("informe o nome do alvo: ");
-                    nome5 = Console.ReadLine();
-
-                    if (ListaDePersonagens.Any(x => x.getNome() == nome5))
-                    {
-                        alvo = ListaDePersonagens.Find(x => x.getNome() == nome5);
-
-
-                        alvo.resetarValores();
-                    }
-                    else
-                    {
-                        Console.WriteLine(nome5 + "não encontrado");
-                    }
-
+                    alvo.resetarValores();
                 }
                 if (opcao == 10)
                 {
-
-                    String nomes;
-                    Console.WriteLine("informe os nomes de todos os personagens que não sejam inimigos: ");
-                    nomes = Console.ReadLine();
-
-                    if (ListaDePersonagens.Any(x => x.getNome() == nomes))
+                    if (ListaDePersonagens.Any(x => x.GetType() != typeof(Inimigo)))
                     {
-                        PersonagemN = ListaDePersonagens.FindAll(x => x.getNome() == nomes);
-
-
+                        List<Personagem> naoInimigos = ListaDePersonagens.FindAll(x => x.GetType() != typeof(Inimigo));
+                        for (int i = 0; i < naoInimigos.Count; i++)
+                        {
+                            naoInimigos[i].resetarValores();
+                        }
                     }
                     else
                     {
-                        Console.WriteLine(nomes + "não encontrados");
+                        Console.WriteLine("não-inimigos não encontrados");
                     }
                 }
                 if (opcao == 11)
                 {
-                    string nomes2;
-                    Console.WriteLine("informe os nomes de todos os inimigos: ");
-                    nomes2 = Console.ReadLine();
-
-                    if (ListaDePersonagens.Any(x => x.getNome() == nomes2))
+                    if(ListaDePersonagens.Any(x=>x.GetType()==typeof(Inimigo)))
                     {
-                        inimigos = ListaDePersonagens.FindAll(x => x.getNome() == nomes2);
+                        List<Personagem> inimigosN = ListaDePersonagens.FindAll(x => x.GetType() == typeof(Inimigo));
 
-                        inimigos.resetarValores();
-                    }
+                        for(int i=0; i< inimigosN.Count;i++)
+                        {
+                            inimigosN[i].resetarValores();
+                        }
+                    }                       
+                    
                     else
                     {
-                        Console.WriteLine(nomes2 + "não encontrados");
+                        Console.WriteLine("inimigos não encontrados");
                     }
                 }
                 if (opcao == 12)
                 {
-                    string nomes3;
-                    Console.WriteLine("informe os nomes de todos os personagens cadastrado: ");
-                    nomes3 = Console.ReadLine();
-
-                    if (ListaDePersonagens.Any(x => x.getNome() == nomes3)
+                    if(ListaDePersonagens.Any())
+                    {
+                        for(int i=0; i<ListaDePersonagens.Count; i++)
                         {
-                        PersonagensCadastrados = ListaDePersonagens.FindAll(x => x.getNome() == nomes3);
-
-                        PersonagensCadastrados.MostrarDados();
+                            ListaDePersonagens[i].MostrarDados();
+                        }
                     }
                     else
                     {
-                        Console.WriteLine(nomes3 + "não encontrados");
+                        Console.WriteLine("personagens não encontrados");
                     }
+
+
                 }
                 if (opcao == 13)
                 {
@@ -503,7 +482,6 @@ namespace treino_no_exercicio_9_da_revisão
                 }
             }
             Console.ReadKey();
-
         }
     }
 }
