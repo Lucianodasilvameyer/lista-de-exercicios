@@ -388,7 +388,7 @@ namespace treino_no_exercicio_9_da_revisão
                         else if (letra2 == 'B' || letra2 == 'b')
                         {
 
-                            Mago g = (Mago)atacante;//aqui passa a variavel atacante do tipo personagem para o tipo mago? 
+                            Mago g = (Mago)atacante;//aqui passa a variavel atacante do tipo personagem para o tipo mago? sim
                             g.BolaDeFogo(alvo);
 
                         }
